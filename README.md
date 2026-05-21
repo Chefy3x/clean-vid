@@ -2,9 +2,11 @@
 
 **Remove watermarks from your videos automatically — no editing skills needed.**
 
-![Before / after](examples/before-after.png)
+![Before / after](examples/before-after.gif)
 
 The watermark disappears. The video stays. Nobody can tell.
+
+> Same clip, side-by-side. Watermark on the left, gone on the right. ([static comparison here](examples/before-after.png) if the GIF won't load.)
 
 ---
 
