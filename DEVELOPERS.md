@@ -16,7 +16,7 @@ The tradeoff: ~0.25 s per frame on M-series Mac CPU (about 4× realtime for 24 f
 
 ## Quick start
 
-**1. Install ffmpeg and Python 3.12.** (3.14 breaks pillow's old build setup. 3.13 works but isn't tested.)
+**1. Install ffmpeg and Python 3.12.** (macOS, via [Homebrew](https://brew.sh). Python 3.14 breaks pillow's old build setup; 3.13 works but isn't tested.)
 
 ```bash
 brew install ffmpeg python@3.12
@@ -102,7 +102,14 @@ LaMa ([simple-lama-inpainting](https://github.com/enesmsahin/simple-lama-inpaint
 
 ## Use as a Claude Code skill
 
-Drop `SKILL.md` (and the `scripts/` folder) into a Claude Code skill directory and Claude can run the pipeline for you conversationally — pick a folder of videos, generate the mask, batch-process, verify the output. The frontmatter in `SKILL.md` includes triggering hints so Claude knows to use it when you describe the task.
+Put `SKILL.md` and the `scripts/` folder in a directory Claude Code reads as a skill:
+
+- `~/.claude/skills/clean-vid/` — available in every project
+- `.claude/skills/clean-vid/` — available in just that project
+
+Either way the layout ends up as `<skills-dir>/clean-vid/SKILL.md`. No restart needed — Claude picks up the skill in the next message. (The pre-built `clean-vid.skill` on the [Releases page](https://github.com/Chefy3x/clean-vid/releases/latest) is just this folder zipped, for the drop-in install described in the README.)
+
+From there Claude can run the pipeline for you conversationally — pick a folder of videos, generate the mask, batch-process, verify the output. The frontmatter in `SKILL.md` includes triggering hints so Claude knows to use it when you describe the task.
 
 ## Advanced: SAM2 for non-rigid targets
 
