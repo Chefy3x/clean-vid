@@ -12,27 +12,35 @@ The watermark disappears. The video stays. Nobody can tell.
 
 ## How to use it
 
-### Step 1 — Get Claude Code
+<sub>🖥️ Tested on **macOS**. Windows isn't tested yet — it may not work out of the box.</sub>
 
-It's free and runs on your computer. Download it here: **[claude.com/claude-code](https://www.anthropic.com/claude-code)**
+### Step 1 — Download the skill
 
-(macOS and Windows both work. Takes about 2 minutes to set up.)
+**[⬇ Download clean-vid.skill](https://github.com/Chefy3x/clean-vid/releases/latest/download/clean-vid.skill)** — click it and the file lands in your Downloads folder.
 
-### Step 2 — Download the skill
+<sub>(Prefer to browse versions? It's on the [Releases page](https://github.com/Chefy3x/clean-vid/releases/latest).)</sub>
 
-Grab the latest `clean-vid.skill` from the **[Releases page](https://github.com/Chefy3x/clean-vid/releases/latest)**.
+### Step 2 — Let Claude install it
 
-### Step 3 — Drop it into Claude Code
+Open Claude Code and **paste this in** — Claude does the rest:
 
-Drag `clean-vid.skill` into Claude Code. That's it. You're done.
+```
+I downloaded a Claude Code skill. Please install it for me: unzip
+~/Downloads/clean-vid.skill and move the resulting clean-vid folder into
+~/.claude/skills/ so you can use it. Tell me when it's ready.
+```
 
-### Step 4 — Tell Claude what you want
+(If you saved the file somewhere other than Downloads, just say where — Claude will find it.) No restart needed; the skill is ready in the same chat.
 
-Open Claude Code and say something like:
+### Step 3 — Tell Claude what you want
+
+In the same chat, say something like:
 
 > "Remove the watermarks from the videos in `/Users/me/Downloads/clips`"
 
-Claude will handle everything else — finding the watermark, cleaning every video in the folder, saving the results next to the originals. First run downloads a model file (~200 MB), then it's fast.
+Claude will handle everything else — finding the watermark, cleaning every video in the folder, saving the results next to the originals.
+
+**First run only:** Claude may ask to install two free helper tools (ffmpeg and Python 3.12) and download a one-time ~200 MB model file. Just approve when it asks. After that, it's fast.
 
 ---
 
@@ -59,9 +67,17 @@ Use it on your own footage and you're fine.
 
 ---
 
-## I'm a developer
+## Use it with your LLM (not just Claude Code)
 
-The Python scripts work standalone without Claude Code — `ffmpeg` + a venv and you're off. See **[DEVELOPERS.md](DEVELOPERS.md)** for the technical details, install steps, and how to plug in your own masks or tracking.
+clean-vid isn't locked to Claude Code. Under the hood it's just a `SKILL.md` instruction file plus a few Python scripts — so any AI coding agent that can run commands on your machine can drive it.
+
+Unzip `clean-vid.skill` (it's a regular zip) to get the `clean-vid` folder, then:
+
+- **Codex, Cursor, Cline, and similar agents** — open the `clean-vid` folder and tell your agent to follow `SKILL.md`.
+- **Open-source / local LLMs** — same idea: hand the model `SKILL.md` and let it run the scripts.
+- **No agent at all** — the Python scripts run standalone (`ffmpeg` + a venv and you're off). See **[DEVELOPERS.md](DEVELOPERS.md)** for install steps and how to plug in your own masks or tracking.
+
+The actual watermark removal is plain Python + LaMa. Nothing about it is Claude-specific.
 
 ---
 
